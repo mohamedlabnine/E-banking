@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0px 205px;
+            background-color: #F6F6F6;
+        }
+        
+        .body {
+            margin: 30px;
+            padding: 30px;
+            background-color: white;
+        }
+        
+        .panel_card {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .card {
+            margin: 10px;
+            padding: 10px;
+            width: 260px;
+            border-radius: 10px;
+            background-color: #F6F6F6;
+            text-align: center;
+        }
+        
+        .btn {
+            border: 1px solid #037ACC;
+            border-radius: 15px;
+            background-color: #037ACC;
+            color: white;
+            padding: 8px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div th:insert="html/header.html :: div"></div>
+    </header>
+
+    <div class="body">
+
+        <div>
+            <p th:text="#{login.bonjour}" />
+            <p th:text="#{login.message1}" />
+            <p th:text="#{login.message2}" /><span th:text="${email}" />
+            <p th:text="#{login.message3}" />
+
+            <h2 th:text="#{login.message4}" />
+            <h2 th:text="#{login.message5}" />
+            <h2 th:text="#{login.message6}" />
+
+
+            <p th:text="#{login.message7}" />
+            <h2 th:text="#{login.message8}" />
+
+            <div class="panel_card">
+                <div class="card">
+                    <h1 th:text="#{login.message9}" />
+                    <p th:text="#{login.message10}" />
+                    <button class="btn" th:text="#{login.message11}" />
+                </div>
+                <div class="card">
+                    <h1 th:text="#{login.message12}" />
+                    <p th:text="#{login.message13}" />
+                    <button class="btn" th:text="#{login.message14}" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div th:insert="html/footer.html :: div" />
+    </footer>
+
+</body>
+
+
+
+</html>
