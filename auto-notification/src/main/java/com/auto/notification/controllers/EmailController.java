@@ -1,7 +1,7 @@
 package com.auto.notification.controllers;
 
 import com.auto.notification.config.Constant;
-import com.auto.common.dto.EmailDto;
+import com.auto.notification.manager.EmailDto;
 import com.auto.notification.manager.EmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

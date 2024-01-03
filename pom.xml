@@ -6,6 +6,7 @@
     <modules>
         <module>auto-entity</module>
         <module>auto-notification</module>
+        <module>AgentServ</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
