@@ -1,32 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <excludeFromCompile>
-      <directory url="file://$PROJECT_DIR$/AgentServ/src/main/resources/archetype-resources" includeSubdirectories="true" />
-    </excludeFromCompile>
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="auto-notification" />
         <module name="auto-entity" />
-        <module name="AgentServ" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="AgentService" target="17" />
-      <module name="demo" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="AgentServ" options="-parameters" />
       <module name="E-bancking" options="" />
       <module name="auto-entity" options="-parameters" />
       <module name="auto-notification" options="-parameters" />
-      <module name="demo" options="-parameters" />
     </option>
   </component>
 </project>
