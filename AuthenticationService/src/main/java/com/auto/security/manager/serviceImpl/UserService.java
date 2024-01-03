@@ -26,7 +26,6 @@ public class UserService implements IUserService {
     private UserRepository userRepository ;
     @Autowired
     private PasswordEncoder passwordEncoder ;
-
     @Autowired
     private RestTemplate restTemplate ;
 

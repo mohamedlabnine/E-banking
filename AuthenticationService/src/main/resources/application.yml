@@ -1,11 +1,21 @@
 server :
   port : 8083
 
-spring :
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/E-Bank
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
   application:
     name: autoSecurity
-
-
 
 jwt:
   secret: MiAVzqUXy5Tfr1kVIGpPMiAVzqUXy5Tfr1kVIGpP5Tfr1kVIGpPMiAVzqUXy5Tfr1kVIGpPMiAVzqUXy5Tfr1kVIGpPMiAVzqUXy5Tfr1kVIGpP5Tfr1kVIGpPMiAVzqUXy5Tfr1kVIGpP

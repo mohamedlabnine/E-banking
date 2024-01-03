@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Admins")
 public class Admin extends User {
