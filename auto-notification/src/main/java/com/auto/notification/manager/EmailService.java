@@ -1,6 +1,5 @@
 package com.auto.notification.manager;
 
-import com.auto.common.dto.EmailDto;
 import jakarta.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
