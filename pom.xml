@@ -7,6 +7,8 @@
         <module>auto-entity</module>
         <module>auto-notification</module>
         <module>AgentServ</module>
+        <module>AdministrationServ</module>
+        <module>AuthenticationService</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -14,10 +16,10 @@
         <version>3.1.2</version>
         <relativePath/>
     </parent>
-    <groupId>com.E-bancking</groupId>
-    <artifactId>E-bancking</artifactId>
+    <groupId>com.E-banking</groupId>
+    <artifactId>E-banking</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>E-bancking</name>
+    <name>E-banking</name>
     <description>autoBackParent project for Spring Boot</description>
 
     <properties>

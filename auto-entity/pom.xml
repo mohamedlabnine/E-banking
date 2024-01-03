@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>E-bancking</artifactId>
-		<groupId>com.E-bancking</groupId>
+		<artifactId>E-banking</artifactId>
+		<groupId>com.E-banking</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 

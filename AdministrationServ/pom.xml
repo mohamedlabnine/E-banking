@@ -6,11 +6,11 @@
         <artifactId>E-banking</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.AgentServ</groupId>
-    <artifactId>AgentServ</artifactId>
+    <groupId>com.AdministrationServ</groupId>
+    <artifactId>AdministrationServ</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>AgentServ</name>
-    <description>Module AgentServ</description>
+    <name>AdministrationServ</name>
+    <description>Module AdministrationServ</description>
     <properties>
         <java.version>17</java.version>
         <common-version>0.0.1-SNAPSHOT</common-version>

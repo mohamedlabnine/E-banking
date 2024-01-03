@@ -14,6 +14,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Client findByClientId(String clientId);
     Client findByFullName(String fullName);
+    Client findByEmail(String email) ;
 
     @Query(value="SELECT * FROM clients", nativeQuery=true)
     List<Client> findAllClients();

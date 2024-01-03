@@ -12,20 +12,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Admins")
-public class Admin {
-
-    @Id
-    @GeneratedValue
-    private long id;
-
-    @Column
-    private String fullName;
-
-    @Column(nullable=false)
-    private String adminName;
-
-    @Column(nullable=false)
-    private String password;
-
-
+public class Admin extends User {
 }

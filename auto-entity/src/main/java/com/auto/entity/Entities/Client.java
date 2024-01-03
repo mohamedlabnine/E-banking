@@ -12,26 +12,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client{
-	
-
-	@GeneratedValue
-	private long id;
-	@Id
-	@Column(nullable=false)
-	private String clientId;
-	
-	@Column(nullable=false, length=100)
-	private String fullName;
+public class Client extends User{
 	
 	@Column(length=4)
 	private String titre; 	//  M. / Mme
 	
 	@Column(nullable=false)
 	private String GSM;
-
-	@Column(nullable=false)
-	private String email;
 
 	@OneToOne(mappedBy="client", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonIgnore

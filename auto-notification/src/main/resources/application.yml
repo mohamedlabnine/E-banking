@@ -1,5 +1,5 @@
 server:
-  port : 8080
+  port : 8084
 
 spring :
   name : AutoNotification
@@ -15,10 +15,6 @@ spring :
       starttls.enable: true
       ssl.trust: smtp.gmail.com
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka
 
 
 

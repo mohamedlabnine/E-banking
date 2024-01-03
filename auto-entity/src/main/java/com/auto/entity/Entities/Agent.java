@@ -12,18 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Agent {
+public class Agent extends User {
 
-	@Id
-	@GeneratedValue
-	private long id;
-
-	@Column(nullable=false)
-	private String username;
-	
-	@Column(nullable=false)
-	private String encryptedPassword;
-	
 	@ManyToOne
 	@JoinColumn(name="agenceId")
 	private Agence agence;
