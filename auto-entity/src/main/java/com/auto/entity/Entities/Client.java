@@ -16,10 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Client extends User{
 
-	@GeneratedValue
-	private long id;
-	@Id
-	@Column(nullable=false)
+	@Column(nullable=false,unique = true)
 	private String clientId;
 	
 	@Column(nullable=false, length=100)
@@ -41,6 +38,5 @@ public class Client extends User{
 	private Boolean blacklist = false ;
 	@ManyToMany
 	private List<Client> clientList;
-
 
 }

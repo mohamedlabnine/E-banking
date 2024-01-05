@@ -19,7 +19,6 @@ import java.util.List;
 @ComponentScan(basePackages = "com.auto.entity.Repositorys")
 @RequestMapping(path = "/emissiontransfert")
 public class EmissionTransfertController {
-
     @Autowired
     TransfertService transfertService;
     @Autowired

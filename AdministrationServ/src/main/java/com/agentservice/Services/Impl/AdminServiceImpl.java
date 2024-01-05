@@ -69,7 +69,7 @@ public class AdminServiceImpl implements AdminService {
         List<AgentDto> agentDtoList = new ArrayList<>();
         List<Agent> agentList;
         if(search.isEmpty()) {
-            agentList = agentRepository.findAllAgents();
+            agentList = agentRepository.findAll();
         }
         else {
             agentList = agentRepository.findAllAgentsByCriteria(search);

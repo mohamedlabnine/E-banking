@@ -27,10 +27,10 @@ public class Compte {
 	private float solde;
 	
 	@OneToOne
-	@JoinColumn(name="clientId")
+	@JoinColumn(name="client_id")
 	private Client client;
 	@OneToOne
-	@JoinColumn(name="agentId")
+	@JoinColumn(name="agent_id")
 	private Agent agent;
 
 	Date now = new Date(System.currentTimeMillis());

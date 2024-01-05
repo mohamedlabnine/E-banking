@@ -12,7 +12,6 @@ import java.util.List;
 
 @Repository
 public interface AgentRepository extends JpaRepository<Agent, Long> {
-    Agent findByAgentId(String agentId);
 
     @Query(value="SELECT * FROM agents where username = :username", nativeQuery=true)
     Agent findByUsername(@Param("username") String username);
