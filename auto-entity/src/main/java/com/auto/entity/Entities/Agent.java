@@ -14,13 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Agent extends User {
-
-	@GeneratedValue
-	private long id;
-	@Id
-	@Column(nullable=false)
-	private String agentId;
-	@Column(nullable=false)
+	@Column(nullable=false,unique = true)
 	private String username;
 	
 	@Column(nullable=false)

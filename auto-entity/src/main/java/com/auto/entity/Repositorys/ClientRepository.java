@@ -12,11 +12,7 @@ import java.util.List;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-    Client findByEmail(String email) ;
     Client findByClientId(String clintId);
-
-    @Query(value="SELECT * FROM clients", nativeQuery=true)
-    List<Client> findAllClients();
 
     @Query(value="SELECT * FROM clients WHERE fullName LIKE %:search%", nativeQuery=true)
     List<Client> findAllClientsByCriteria(@Param("search") String search);

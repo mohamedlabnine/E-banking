@@ -52,9 +52,9 @@ public class TransfertServiceImpl implements TransfertService {
         }
         //Si nn le compte de l'agent qui sera debite
         else{
-            Compte compteagent = agentRepository.findByAgentId(transfertDto.getAgentId()).getCompte();
+            Compte compteagent = agentRepository.findById(transfertDto.getAgentId()).get().getCompte();
             compteagent.setSolde(compteagent.getSolde()- transfertDto.getMontant());
-            transfertEntity.setAgent(agentRepository.findByAgentId(transfertDto.getAgentId()));
+            transfertEntity.setAgent(agentRepository.findById(transfertDto.getAgentId()).get());
         }
         //Agoutez les parametre necessaires :
 		transfertEntity.setClientDonneur(clientRepository.findByClientId(transfertDto.getClientDonneurId()));
