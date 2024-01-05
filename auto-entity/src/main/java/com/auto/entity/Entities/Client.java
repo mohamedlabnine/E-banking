@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Entity
 @Table(name="clients")
@@ -13,6 +15,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Client extends User{
+
+	@GeneratedValue
+	private long id;
+	@Id
+	@Column(nullable=false)
+	private String clientId;
+	
+	@Column(nullable=false, length=100)
+	private String fullName;
 	
 	@Column(length=4)
 	private String titre; 	//  M. / Mme
@@ -22,10 +33,14 @@ public class Client extends User{
 
 	@OneToOne(mappedBy="client", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonIgnore
-	private Compte comptes;
+	private Compte compte;
 
 	@Column
 	private Boolean hasCompte = true ;
+	@Column
+	private Boolean blacklist = false ;
+	@ManyToMany
+	private List<Client> clientList;
 
 
 }

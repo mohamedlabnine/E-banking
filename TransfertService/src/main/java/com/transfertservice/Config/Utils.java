@@ -1,4 +1,4 @@
-package com.auto.entity.Shared;
+package com.transfertservice.Config;
 
 import org.springframework.stereotype.Service;
 
@@ -6,6 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
+
 @Service
 public class Utils {
 

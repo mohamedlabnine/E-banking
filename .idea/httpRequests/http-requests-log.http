@@ -1,0 +1,18 @@
+GET http://localhost:8081/transfert
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-01-03T164956.404.json
+
+###
+
+GET http://localhost:8081/transfert
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-01-03T164951.404.json
+
+###
+

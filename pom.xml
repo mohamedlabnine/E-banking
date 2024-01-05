@@ -6,9 +6,9 @@
     <modules>
         <module>auto-entity</module>
         <module>auto-notification</module>
-        <module>AgentServ</module>
         <module>AdministrationServ</module>
         <module>AuthenticationService</module>
+        <module>TransfertService</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -47,10 +47,5 @@
         </dependency>
 
     </dependencies>
-
-
-
-
-
 
 </project>

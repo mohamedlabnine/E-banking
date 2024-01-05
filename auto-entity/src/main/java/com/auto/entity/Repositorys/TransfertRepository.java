@@ -12,7 +12,7 @@ import java.util.List;
 public interface TransfertRepository extends JpaRepository<Transfert, Long> {
 
     Transfert findByTransfertId(String transfertId);
-    Transfert findByReferenceTransfert(String referenceTransfert);
+    Transfert findTransfertByReferenceTransfert(String referenceTransfert);
 
     @Query(value="SELECT * FROM transferts WHERE etat LIKE %:etat%", nativeQuery=true)
     List<Transfert> getAllTransfertByEtat(@Param("etat") String etat);
@@ -22,4 +22,9 @@ public interface TransfertRepository extends JpaRepository<Transfert, Long> {
 
     @Query(value="SELECT * FROM transferts WHERE clientDonneurId = :clientId", nativeQuery=true)
     List<Transfert> getAllTransfertByClientDonneur(@Param("clientId") String clientId);
+    @Query(value = "SELECT * FROM transferts WHERE clientDonneurId = :clientId AND YEAR(dateTransfert) = :year", nativeQuery = true)
+    List<Transfert> findByClientDonneurIdAndDateTransfertYear(@Param("clientId") String clientId, @Param("year") int year);
+    @Query(value = "SELECT * FROM transferts WHERE agentId = :agentId AND YEAR(dateTransfert) = :year", nativeQuery = true)
+    List<Transfert> findByAgentIdAndDateTransfertYear(@Param("agentId") String agentId, @Param("year") int year);
+
 }
