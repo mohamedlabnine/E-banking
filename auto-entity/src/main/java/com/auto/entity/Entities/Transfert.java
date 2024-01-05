@@ -48,6 +48,9 @@ public class Transfert {
 	@ManyToOne
 	@JoinColumn(name="clientBeneficaireId")
 	private Client clientBeneficaire;
+	@ManyToOne
+	@JoinColumn(name="agentId")
+	private Agent agent;
 
 	Date now = new Date(System.currentTimeMillis());
 

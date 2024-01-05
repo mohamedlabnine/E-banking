@@ -13,6 +13,7 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Client findByEmail(String email) ;
+    Client findByClientId(String clintId);
 
     @Query(value="SELECT * FROM clients", nativeQuery=true)
     List<Client> findAllClients();

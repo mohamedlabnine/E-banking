@@ -29,6 +29,9 @@ public class Compte {
 	@OneToOne
 	@JoinColumn(name="clientId")
 	private Client client;
+	@OneToOne
+	@JoinColumn(name="agentId")
+	private Agent agent;
 
 	Date now = new Date(System.currentTimeMillis());
 
