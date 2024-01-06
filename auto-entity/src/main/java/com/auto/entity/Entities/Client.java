@@ -36,7 +36,8 @@ public class Client extends User{
 	private Boolean hasCompte = true ;
 	@Column
 	private Boolean blacklist = false ;
-	@ManyToMany
+
+	@OneToMany
 	private List<Client> clientList;
 
 }

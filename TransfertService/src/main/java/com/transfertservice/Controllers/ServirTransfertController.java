@@ -2,6 +2,7 @@ package com.transfertservice.Controllers;
 
 import com.auto.entity.Entities.Transfert;
 import com.auto.entity.Repositorys.ClientRepository;
+import com.auto.entity.Shared.dto.TransfertDto;
 import com.transfertservice.Services.TransfertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,15 +19,15 @@ public class ServirTransfertController {
     TransfertService transfertService;
     @Autowired
     ClientRepository clientRepository;
-    @PostMapping(path="/{transfertId}",
+    @PostMapping(
             consumes= MediaType.APPLICATION_JSON_VALUE,
             produces=MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<?> Transfert(@PathVariable String transfertId){
+    public ResponseEntity<?> Transfert(@RequestBody TransfertDto transfertDto){
         try {
-            if(transfertId==null)
+            if(transfertDto.getReferenceTransfert()==null)
                 throw new RuntimeException("vous oublier des champs obligatoire");
-            Transfert transfertEntity = transfertService.ServirTransfert(transfertId);
+            Transfert transfertEntity = transfertService.ServirTransfert(transfertDto);
             return new ResponseEntity(transfertEntity, HttpStatus.CREATED);
         } catch (RuntimeException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);

@@ -26,7 +26,7 @@ public class TransfertDto implements Serializable {
     private Boolean GAB_BOA = false;
     private String clientDonneurId;
     private String clientBeneficaireId;
-    private Long agentId;
+    private String agentId;
     private Date dateTransfert;
     private Date dateReception;
     private int delaiTransfert = 7;
