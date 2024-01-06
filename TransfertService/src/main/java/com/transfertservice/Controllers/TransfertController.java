@@ -37,12 +37,6 @@ public class TransfertController {
         return new ResponseEntity<Transfert>(updatedTransfert, HttpStatus.ACCEPTED);
     }
 
-    @PutMapping(path = "/finDelai/{transfertId}", consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Transfert> finDelai2(@PathVariable String transfertId) {
-        Transfert updatedTransfert = transfertService.finDelai2(transfertId);
-        return new ResponseEntity(updatedTransfert, HttpStatus.ACCEPTED);
-    }
-
     @GetMapping(path="/transfertId/{transfertId}", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Transfert> getTransfertByTransfertId(@PathVariable String transfertId) {
         Transfert transfertEntity = transfertService.getTransfertByTransfertId(transfertId);

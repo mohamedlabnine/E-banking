@@ -14,6 +14,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.Instant;
 import java.time.Year;
@@ -52,9 +53,9 @@ public class TransfertServiceImpl implements TransfertService {
         }
         //Si nn le compte de l'agent qui sera debite
         else{
-            Compte compteagent = agentRepository.findById(transfertDto.getAgentId()).get().getCompte();
+            Compte compteagent = agentRepository.findById(Long.parseLong(transfertDto.getAgentId())).get().getCompte();
             compteagent.setSolde(compteagent.getSolde()- transfertDto.getMontant());
-            transfertEntity.setAgent(agentRepository.findById(transfertDto.getAgentId()).get());
+            transfertEntity.setAgent(agentRepository.findById(Long.parseLong(transfertDto.getAgentId())).get());
         }
         //Agoutez les parametre necessaires :
 		transfertEntity.setClientDonneur(clientRepository.findByClientId(transfertDto.getClientDonneurId()));
@@ -80,24 +81,34 @@ public class TransfertServiceImpl implements TransfertService {
     }
 
     @Override
-    public Transfert ServirTransfert(String transfertId) {
-        Transfert transfertEntity = transfertRepository.findByTransfertId(transfertId);
-        //si le transfert est n'est pas bloqué
-        if(!transfertEntity.getEtat().equals("Bloqué")){
-            if(!transfertEntity.getGAB_BOA()){
-                if(transfertEntity.getTypeTransfert().equals("DEBIT")){
-                    Compte compteBeneficiere = transfertEntity.getClientBeneficaire().getCompte();
-                    compteBeneficiere.setSolde(compteBeneficiere.getSolde()+ transfertEntity.getMontant());
+    public Transfert ServirTransfert(TransfertDto transfertDto) {
+        Transfert transfertEntity = transfertRepository.findByTransfertId(transfertDto.getTransfertId());
+        if(transfertEntity==null){
+            //si le transfert est n'est pas bloqué
+            if(!transfertEntity.getEtat().equals("Bloqué")){
+                if(!transfertEntity.getGAB_BOA()){
+                    if(transfertEntity.getTypeTransfert().equals("DEBIT")){
+                        Compte compteBeneficiere = transfertEntity.getClientBeneficaire().getCompte();
+                        compteBeneficiere.setSolde(compteBeneficiere.getSolde()+ transfertEntity.getMontant());
+                    }else{
+                        Compte compteagent = transfertEntity.getAgent().getCompte();
+                        compteagent.setSolde(compteagent.getSolde()+ transfertEntity.getMontant());
+                    }
                 }else{
-                    Compte compteagent = transfertEntity.getAgent().getCompte();
-                    compteagent.setSolde(compteagent.getSolde()+ transfertEntity.getMontant());
+                    if(!transfertDto.getPin().equals(transfertEntity.getPin())){
+                        throw new RuntimeException("Le code pin est incorrect");
+                    }
+
                 }
+                transfertEntity.setEtat("Servie");
+                Date now = new Date(System.currentTimeMillis());
+                transfertEntity.setDateReception(now);
+            }else {
+                throw new RuntimeException("Ce Transfert est Bloqué");
             }
-            transfertEntity.setEtat("Servie");
-            Date now = new Date(System.currentTimeMillis());
-            transfertEntity.setDateReception(now);
-        }else {
-             throw new RuntimeException("Ce Transfert est Bloqué");
+
+        }else{
+            throw new RuntimeException("Ce Transfert n'exist pas");
         }
         return transfertRepository.save(transfertEntity);
     }
@@ -115,23 +126,6 @@ public class TransfertServiceImpl implements TransfertService {
         return transfertEntity;
     }
 
-
-
-
-    @Override
-    public Transfert finDelai2(String transfertId) {
-        Transfert transfertEntity = transfertRepository.findByTransfertId(transfertId);
-        Date transfertDate = transfertEntity.getDateTransfert();
-        Date now = new Date(System.currentTimeMillis());
-        Calendar td = Calendar.getInstance();
-        td.setTime(transfertDate);
-        Calendar n = Calendar.getInstance();
-        n.setTime(now);
-        td.add(Calendar.DATE,2);
-        if(transfertEntity.getDelaiTransfert() == 2 && td.before(n))
-            transfertEntity.setEtat("Bloqué");
-        return transfertEntity;
-    }
 
     @Override
     public Transfert getTransfertByTransfertId(String transfertId) {

@@ -11,11 +11,10 @@ import java.util.List;
 public interface TransfertService {
 
     Transfert EmissionTransfert(TransfertDto transfertDto);
-    Transfert ServirTransfert(String transfertId);
+    Transfert ServirTransfert(TransfertDto transfertDto);
     //_______________________________________________________________________
     Transfert changeTransfertEtat(String transfertId, String newEtat);
 
-    Transfert finDelai2(String transfertId);
     //_______________________________________________________________________
     Transfert getTransfertByTransfertId(String transfertId);
     List<Transfert> getAllTransfert();
