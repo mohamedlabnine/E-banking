@@ -1,4 +1,4 @@
-package com.auto.notification.manager;
+package com.auto.entity.Shared.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

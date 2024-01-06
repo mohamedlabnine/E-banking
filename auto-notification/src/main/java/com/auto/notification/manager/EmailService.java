@@ -1,54 +1,29 @@
 package com.auto.notification.manager;
 
-import jakarta.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.spring6.SpringTemplateEngine;
+
 
 @Service
 @Slf4j
 public class EmailService {
-    private JavaMailSender sender;
-    private SpringTemplateEngine templateEngine;
+    @Autowired
+    private  JavaMailSender javaMailSender ;
 
+    public void sendEmail(EmailDto emailDto){
 
-    public EmailService(JavaMailSender sender ,  SpringTemplateEngine springTemplateEngine) {
-        this.sender = sender;
-        this.templateEngine = springTemplateEngine ;
-    }
+        SimpleMailMessage mailMessage = new SimpleMailMessage() ;
+        mailMessage.setFrom("mohamedlabnine1@gmail.com");
+        mailMessage.setTo(emailDto.getToEmail());
+        mailMessage.setSubject(emailDto.getSubject());
+        String body = "code : " + emailDto.getCode() + " / ref : " + emailDto.getRef() ;
 
+        mailMessage.setText(body);
 
-    public void sendEmail(EmailDto emailDto) {
-
-        log.info("build template for email");
-
-        try {
-
-            final Context ctx = new Context();
-
-            ctx.setVariable("email", emailDto.getToEmail());
-
-
-            final MimeMessage mimeMessage = this.sender.createMimeMessage();
-            final MimeMessageHelper message = new MimeMessageHelper(mimeMessage,true, "UTF-8");
-            message.setSubject(emailDto.getSubject());
-            message.setTo(emailDto.getToEmail());
-
-            //message.setFrom(new InternetAddress("LaCentral@gmail.com", "LaCentral"));
-
-
-            final String htmlContent = this.templateEngine.process( emailDto.getTemplate() , ctx);
-            message.setText(htmlContent, true);
-            this.sender.send(mimeMessage);
-
-
-        } catch (Exception e) {
-
-            log.error(e.getMessage());
-        }
+        javaMailSender.send(mailMessage);
     }
 
 

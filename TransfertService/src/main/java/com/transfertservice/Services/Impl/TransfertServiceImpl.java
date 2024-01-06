@@ -1,6 +1,7 @@
 package com.transfertservice.Services.Impl;
 
 import com.auto.entity.Repositorys.AgentRepository;
+import com.auto.entity.Shared.dto.EmailDto;
 import com.transfertservice.Config.Utils;
 import com.transfertservice.Services.TransfertService;
 import com.auto.entity.Entities.Compte;
@@ -13,16 +14,18 @@ import com.auto.entity.Shared.dto.TransfertMultipleDto;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.Instant;
 import java.time.Year;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -37,8 +40,12 @@ public class TransfertServiceImpl implements TransfertService {
     CompteRepository compteRepository;
     @Autowired
     Utils util;
+    @Autowired
+    RestTemplate restTemplate ;
+
     @Override
     public Transfert EmissionTransfert(TransfertDto transfertDto) {
+
         Transfert transfertcheck = transfertRepository.findTransfertByReferenceTransfert(transfertDto.getReferenceTransfert());
         //check si le transsfet est deja existe :
         if(transfertcheck != null){throw new RuntimeException("Ce Transfert est déjà existe");}
@@ -73,9 +80,29 @@ public class TransfertServiceImpl implements TransfertService {
         //Envoyer la notification si demande : 2 cas
         if(transfertDto.getNotification() && transfertDto.getGAB_BOA()){
             //Ajouter service de Notification
+
+            this.sendNotification(new EmailDto(transfertEntity.getClientDonneur().getEmail() ,
+                    "Transfer GAB BOA : " ,
+                    transfertEntity.getPin() ,
+                    transfertEntity.getReferenceTransfert()));
+            this.sendNotification(new EmailDto(transfertEntity.getClientBeneficaire().getEmail() ,
+                    "Transfer : " ,
+                    transfertEntity.getPin() ,
+                    transfertEntity.getReferenceTransfert()));
+
+
         }
         else if(transfertDto.getNotification()){
             //Ajouter service de Notification
+
+            this.sendNotification(new EmailDto(transfertEntity.getClientDonneur().getEmail() ,
+                    "Transfer : " ,
+                    transfertEntity.getPin() ,
+                    transfertEntity.getReferenceTransfert()));
+            this.sendNotification(new EmailDto(transfertEntity.getClientBeneficaire().getEmail() ,
+                    "Transfer : " ,
+                    transfertEntity.getPin() ,
+                    transfertEntity.getReferenceTransfert()));
         }
         return transfertRepository.save(transfertEntity);
     }
@@ -228,5 +255,21 @@ public class TransfertServiceImpl implements TransfertService {
             }
         }
     }
+
+
+
+    public void sendNotification(EmailDto emailDto){
+
+        String url = "http://localhost:8084/notification" ;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<EmailDto> entity = new HttpEntity<>(emailDto);
+
+        restTemplate
+                .exchange(url , HttpMethod.POST, entity, Void.class).getBody() ;
+
+    }
+
 
 }
