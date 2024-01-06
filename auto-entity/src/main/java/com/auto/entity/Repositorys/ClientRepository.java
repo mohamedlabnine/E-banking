@@ -13,6 +13,7 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Client findByClientId(String clintId);
+    Client findByFullName(String fullName) ;
 
     @Query(value="SELECT * FROM clients WHERE fullName LIKE %:search%", nativeQuery=true)
     List<Client> findAllClientsByCriteria(@Param("search") String search);

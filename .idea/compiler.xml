@@ -10,11 +10,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="auto-notification" />
+        <module name="auto-entity" />
+        <module name="transfertservice" />
         <module name="AdministrationServ" />
         <module name="AuthenticationService" />
-        <module name="transfertservice" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AgentServ" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

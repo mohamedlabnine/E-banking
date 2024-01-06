@@ -40,4 +40,9 @@ public class Client extends User{
 	@OneToMany
 	private List<Client> clientList;
 
+	public Boolean isHasCompte() {
+		return hasCompte;
+	}
+
+
 }

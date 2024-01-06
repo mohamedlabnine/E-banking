@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/AuthenticationService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TransfertService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TransfertService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auto-entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auto-notification/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
