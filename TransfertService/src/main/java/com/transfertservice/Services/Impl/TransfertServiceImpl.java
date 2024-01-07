@@ -40,7 +40,7 @@ public class TransfertServiceImpl implements TransfertService {
     CompteRepository compteRepository;
     @Autowired
     Utils util;
-    @Autowired
+
     RestTemplate restTemplate ;
 
     @Override
